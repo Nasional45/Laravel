@@ -87,3 +87,26 @@ Route::get('user/{nama}/{nilai?}', function ($nama, $nilai='Belum Memiliki Nilai
 }
     return 'Nama : '.$nama.'<br>' . $nilai .'<br>' . $grade;
 });
+
+Route::get('contoh','ContohController@latihan');
+
+Route::get('profil','ContohController@latihan2');
+
+Route::get('profil2','ContohController@latihan3');
+
+Route::get('profil3','ContohController@latihan4');
+
+Route::get('biodata','BiodataController@latihan5');
+
+Route::get('menu/{mkn?}','MenuController@menu');
+
+Route::get('pesan/{pesan1?}/{pesan2?}/{harga2?}','PesanController@pesan');
+
+//Crud Buku
+Route::get('get-buku','BukuController@index');
+Route::get('create-buku','BukuController@buatdata');
+Route::get('get-buku/{id}','BukuController@show');
+Route::get('delete-buku/{id}','BukuController@delete');
+Route::get('update-buku/{id}/{judul}','BukuController@update');
+Route::get('hitung-buku','BukuController@hitungbuku');
+Route::get('data','BukuController@buatdata');
