@@ -8,7 +8,7 @@ class BukuController extends Controller
 {
     public function index()
     {
-         $buku = Buku::select('judul','jumlah_halaman','penerbit')->take(3)->get();
+         $buku = Buku::select('judul','jumlah_halaman','penerbit')->get();
          return $buku;
     }
     public function show($id)
@@ -21,9 +21,9 @@ class BukuController extends Controller
          $buku = Buku::count();
          return $buku;
     }
-    public function buatdata(){
+    public function buatdata($judul){
        $buku = new Buku();
-       $buku->judul = 'Deni Adalah Cerdikiawa';
+       $buku->judul = $judul;
        $buku->jumlah_halaman = 2000;
        $buku->penerbit = 'Pt Garena Indonesia';
        $buku->synopsis = "Kalo Mau Menjadi Pro Player Harus Selalu Berusaha";
@@ -31,9 +31,9 @@ class BukuController extends Controller
        $buku->save();
        return $buku;
     }
-    public function update($id){
+    public function update($id,$judul){
         $buku = Buku::find($id);
-        $buku->judul = 'Deni Adalah Cerdikiawa';
+        $buku->judul = $judul;
         $buku->jumlah_halaman = 2000;
         $buku->penerbit = 'Pt Garena Indonesia';
         $buku->synopsis = "Kalo Mau Menjadi Pro Player Harus Selalu Berusaha";

@@ -104,9 +104,16 @@ Route::get('pesan/{pesan1?}/{pesan2?}/{harga2?}','PesanController@pesan');
 
 //Crud Buku
 Route::get('get-buku','BukuController@index');
-Route::get('create-buku','BukuController@buatdata');
+Route::get('create-buku/{judul}','BukuController@buatdata');
 Route::get('get-buku/{id}','BukuController@show');
 Route::get('delete-buku/{id}','BukuController@delete');
 Route::get('update-buku/{id}/{judul}','BukuController@update');
 Route::get('hitung-buku','BukuController@hitungbuku');
 Route::get('data','BukuController@buatdata');
+
+//Crud Siswa
+Route::get('get-siswa','SiswaController@index');
+Route::get('create-siswa/{nama}/{nis}','SiswaController@buatdatasiswa');
+Route::get('show-siswa','SiswaController@show');
+Route::get('delete-siswa/{id}','SiswaController@delete');
+Route::get('update-siswa/{id}/{nama}/{nis}','SiswaController@update');
