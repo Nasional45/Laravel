@@ -8,13 +8,13 @@ class BukuController extends Controller
 {
     public function index()
     {
-         $buku = Buku::select('judul','jumlah_halaman','penerbit')->get();
-         return $buku;
+         $buku = Buku::all();
+         return view('buku.index',compact('buku'));
     }
     public function show($id)
     {
          $buku = Buku::find($id);
-         return $buku;
+         return view('buku.show',compact('buku'));
     }
     public function hitungbuku()
     {
