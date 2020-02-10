@@ -13,7 +13,7 @@ class PeminjamanBukuSeeder extends Seeder
     public function run()
     {
        $peminjaman = new PeminjamanBuku;
-       $peminjaman->no_peminjaman = 'H200';
+       $peminjaman->no_peminjaman = 'H300';
        $peminjaman->nama_peminjam = 'Ferdinand';
        $peminjaman->tanggal_peminjaman = '10 Januari 2020';
        $peminjaman->tanggal_kembali = "11 February 2020";

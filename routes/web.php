@@ -12,6 +12,10 @@
 */
 use App\Buku;
 use App\PeminjamanBuku;
+use App\Mahasiswa;
+use App\Wali;
+use App\Dosen;
+use App\Hobi;
 
 Route::get('/', function () {
     return Buku::all();
@@ -90,7 +94,7 @@ Route::get('user/{nama}/{nilai?}', function ($nama, $nilai='Belum Memiliki Nilai
 
 Route::get('contoh','ContohController@latihan');
 
-Route::get('profil','ContohController@latihan2');
+Route::get('profil1','ContohController@latihan2');
 
 Route::get('profil2','ContohController@latihan3');
 
@@ -131,3 +135,78 @@ Route::get('book/{id}','BukuController@show');
 //gaji
 Route::get('gaji','GajiController@index');
 Route::get('gaji/{id}','GajiController@show');
+
+//Belajar Blade Templating
+Route::get('/profil',function(){
+    return view('profil');
+});
+
+Route::get('/contact',function(){
+    return view('contact');
+});
+
+Route::get('/blogger',function(){
+    return view('blogger');
+});
+
+//Relasi 1
+Route::get('relasi-1', function() {
+
+    # Temukan mahasiswa dengan NIM 1015015072
+    $mahasiswa = Mahasiswa::where('nim', '=', '1015015072')->first();
+
+    # Tampilkan nama wali mahasiswa
+    return $mahasiswa->wali->nama;
+});
+
+//Relasi 2
+Route::get('relasi-2', function() {
+
+    # Temukan mahasiswa dengan NIM 1015015072
+    $mahasiswa = Mahasiswa::where('nim', '=', '1015015072')->first();
+    
+    # Tampilkan nama wali mahasiswa
+    return $mahasiswa->dosen->nama;
+});
+
+//Relasi 3
+Route::get('relasi-3', function() {
+
+    # Temukan mahasiswa dengan NIM 1015015072
+    $dosen = Dosen::where('nama', '=', 'Yulianto')->first();
+    
+    # Tampilkan nama wali mahasiswa
+    foreach ($dosen->mahasiswa as $temp)
+    echo '<li> Nama : ' .$temp->nama . 
+            ' <strong> ' . $temp->nim . '</strong></li>';
+        });
+   
+//Relasi 4
+Route::get('relasi-4', function() {
+
+    # Temukan mahasiswa bernama noviyanto
+    $novay = Mahasiswa::where('nama', '=', 'Noviyanto Rachmadi')->first();
+    # Menampilkan Seluruh hobi si novay
+    foreach ($novay->hobi as $temp)
+    echo '<li>' . $temp->hobi . '</li>';             
+});
+
+Route::get('relasi-5', function() {
+
+    # mencari data mandi hujan
+    $mandi_hujan = Hobi::where('hobi', '=', 'Mandi Hujan')->first();
+        
+    # Tampilkan nama wali mahasiswa
+    foreach ($mandi_hujan->mahasiswa as $temp)
+    echo '<li> Nama : ' .$temp->nama . 
+            ' <strong> ' . $temp->nim . '</strong></li>';
+            
+});
+
+Route::get('eloquent', function() {
+        $data = Mahasiswa::with('wali', 'dosen', 'hobi')->get();
+        return view('eloquent', compact('data'));
+});
+
+
+
